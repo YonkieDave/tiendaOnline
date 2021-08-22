@@ -1,9 +1,0 @@
-{
-    "mercado_libre_api":{
-        "client_secret": "lssqxyTrBR7mgWxSVzGMR5p-",
-        "client_id": "531571355788-kbuvpu8a8mpoabdnhgcggpnk5optf5bv.apps.googleusercontent.com",
-        "redirect_uris": "http://localhost:3000/oauthcontact",
-        "email":"adminchatbot@tecas.com.mx",
-        "password":"tmjA*tZEWvp#"
-    }
-}
