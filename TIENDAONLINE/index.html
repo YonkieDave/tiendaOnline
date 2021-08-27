@@ -16,6 +16,7 @@
     <!-- Bootstrap core CSS -->
     <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -30,6 +31,10 @@
                 font-size: 3.5rem;
             }
         }
+        
+        #ARTICULO-ML {
+            display: flex-between;
+        }
     </style>
 
 
@@ -41,10 +46,47 @@
 
     <div class="container">
         <main>
-
-            <div class="row g-3">
-                <div class="col-md-5 col-lg-4 order-md-last">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="/index.html">Shop Online</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="/index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/tendencias.html" onclick="getTendencias();">Tendencias ML</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Link
+                        </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Link</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
+                            <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            <div class="container d-flex justify-content-end position-sticky form-control">
+                <div class="col-md-3 order-md-last position-sticky">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3 form-control">
                         <span class="text-muted">Tu carrito</span>
                         <span class="badge bg-secondary rounded-pill">3</span>
                     </h4>
@@ -85,22 +127,30 @@
 
                     <form class="card p-2">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Promo code">
-                            <button type="submit" class="btn btn-secondary">Redeem</button>
+                            <p>¿Tienes un código?</p>
+                            <input type="text" class="form-control" placeholder="Código de promoción">
+                            <button type="submit" class="btn btn-secondary">Canjear</button>
+                            <button class="btn btn-primary" type="submit">Continuar con la compra</button>
                         </div>
                     </form>
                 </div>
 
                 <hr class="my-4">
+                <form>
 
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-                </form>
+                    <div class="container" id="articleDiv" style="margin-top: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; align-items: flex-start;">
+
+                    </div>
             </div>
+            </form>
+            </form>
+
+    </div>
     </div>
     </main>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-1">&copy; 2017–2021 Company Name</p>
+        <p class="mb-1">&copy; 2021 TECLA CODING ACADEMY LEO & DAVE</p>
         <ul class="list-inline">
             <li class="list-inline-item"><a href="#">Privacy</a></li>
             <li class="list-inline-item"><a href="#">Terms</a></li>
@@ -110,9 +160,10 @@
     </div>
 
 
-    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="./assets/dist/js/form-validation.js"></script>
+    <script src="/assets/dist/js/form-validation.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
