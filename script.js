@@ -4,9 +4,17 @@ class ShopingCart {
         this.total = 0;
         this.pagado = false;
     }
+    addCart(articulo) {
+        console.log(`valor del boton pulsado --- > nombre ${articulo[0]} precio ${articulo[1]}  id  ${articulo[2]}`);
+        console.log('Se va a agregar un articulo al carrito');
+
+        const carrito = new ShopingCart('Carrito');
+        carrito.addArticle(articulo);
+    }
     addArticle(article) {
+        console.log(`Esto se va a pushear a la variable   ${article}`)
         this.articles.push(article);
-        //console.log(`articulos en el carrito ${JSON.stringify(this.articles)} `);
+        console.log(`articulos en el carrito ${JSON.stringify(this.articles)} `);
 
         let divCart = document.createElement("div");
         let viewCartFront = `
@@ -19,8 +27,8 @@ class ShopingCart {
         listCart.appendChild(divCart);
         //console.log(`articulos en el carrito ${JSON.stringify(this.article)} `);
 
-        let calcTotal = new ShopingCart('Total');
-        calcTotal.getTotalCart(this.articles);
+        let objCarrito = new ShopingCart('Total');
+        objCarrito.getTotalCart(this.articles);
 
     }
     getTotalCart(price) {
@@ -75,14 +83,8 @@ class Articulo {
     }
 
     async CreateArticle(type) {
-
         let j = 0;
-
-        //console.log(type);
-
-
         for (let i = 0; i < this.data.results.length; i++) {
-
             const divProducts = document.createElement("div");
             divProducts.setAttribute("id", "p" + i);
             divProducts.setAttribute("class", "Card");
@@ -92,7 +94,7 @@ class Articulo {
                     <div class = "card-title form-control" " > 
                         <h5 id = ${this.data.results[i].id} class = "card-title"> ${this.data.results[i].title}</h5>
                         <h3 id=${j}>$${this.data.results[i].price}</h3 > 
-                        <a is= "5" name= "${this.data.results[i].title}" value = "${this.data.results[i].price}" class = "btn btn-primary" id = "Boton ${j}" onclick ="addCart('${this.data.results[i].title}','${this.data.results[i].price}','${this.data.results[i].id}');" > Agregar al carrito </a>
+                        <a is= "5" name= "${this.data.results[i].title}" value = "${this.data.results[i].price}" class = "btn btn-primary" id = "Boton ${j}" onclick ="carrito.addCart('${this.data.results[i].title}','${this.data.results[i].price}','${this.data.results[i].id}');" > Agregar al carrito </a>
                     </div>
             </div>`;
             divProducts.innerHTML += producto;
@@ -122,24 +124,18 @@ const execute = (opc, a) => {
     }
 };
 
-//execute("Inicio");
+execute("Inicio");
+const carrito = new ShopingCart('Carrito');
+/*
 let articulo = ["camisa", 203, 10001];
-addCart(articulo);
-addCart(articulo);
-addCart(articulo);
-addCart(articulo);
+prueba.addArticle(articulo);
+prueba.addArticle(articulo);
+prueba.addArticle(articulo);
+prueba.addArticle(articulo);
+prueba.addArticle(articulo);*/
 
 const searchArticle = () => {
     let articleSearch = document.getElementById("busqueda").value;
     console.log(`Se obtuvo la búsqueda ${articleSearch}`);
     execute("Busqueda", articleSearch);
 };
-
-function addCart(name, price, id) {
-    console.log(`valor del boton pulsado --- > nombre ${name} precio ${price}  id  ${id}`);
-    console.log('Se va a agregar un articulo al carrito');
-    let article = [name, price, id]
-
-    const carrito = new ShopingCart('Carrito');
-    carrito.addArticle(article);
-}
