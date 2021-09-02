@@ -17,3 +17,10 @@ for (let i = 0; i < 50; i++) {
     contenedor.innerHTML += producto
     products.appendChild(contenedor)
 }
+
+async function getPaises() {
+    const result = await fetch('http://localhost:3000/paises');
+    const paises = await result.json();
+    console.log(paises.MX);  
+}
+getPaises()

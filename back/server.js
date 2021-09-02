@@ -2,15 +2,15 @@ const express = require("express");
 const dotenv = require('dotenv');
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
+const cors = require('cors')
 
 const app = express();
 
 dotenv.config();
 
-//Configuramos JSON como lenguaje de comunicación
-
+//Middlelware
 app.use(express.json());
-
+app.use(cors());
 app.use(midd.log);
 
 app.listen(process.env.PORT, function () {
