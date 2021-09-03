@@ -2,16 +2,23 @@ const express = require("express");
 const dotenv = require('dotenv');
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
-const cors = require('cors')
+const cors = require('cors');
+
 
 const app = express();
 
 dotenv.config();
 
+
+
+
+
 //Middlelware
 app.use(express.json());
 app.use(cors());
 app.use(midd.log);
+app.use(midd.limitador);
+
 
 app.listen(process.env.PORT, function () {
     console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`)
@@ -23,7 +30,7 @@ app.get('/', function (req, res) {
 })
 
 //Endpoint para obtener paises de la DB
-app.get('/paises', function (req, res) {
+app.get('/paises',cors(midd.corsOption),function (req, res) {
     res.send(db.Paises)
 })
 
@@ -40,6 +47,7 @@ app.post('/paises',midd.Autenticar, function (req, res) {
                 codigo: 503,
                 error: true,
                 mensaje: 'País ya registrado'
+                
             }
         } else {
             db.nuevoPais(req.body.nombre, req.body.codigo)

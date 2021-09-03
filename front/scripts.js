@@ -24,3 +24,9 @@ async function getPaises() {
     console.log(paises.MX);  
 }
 getPaises()
+getPaises()
+getPaises()
+getPaises()
+getPaises()
+getPaises()
+getPaises()
