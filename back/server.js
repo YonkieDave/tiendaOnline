@@ -3,14 +3,9 @@ const dotenv = require('dotenv');
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
 const cors = require('cors');
-
-
+const { urlencoded } = require("express");
 const app = express();
-
 dotenv.config();
-
-
-
 
 
 //Middlelware
@@ -18,65 +13,91 @@ app.use(express.json());
 app.use(cors());
 app.use(midd.log);
 app.use(midd.limitador);
+//app.use(db.getProducts);
 
 
-app.listen(process.env.PORT, function () {
-    console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`)
+//manejador de errores
+app.use(midd.errorManager);
+
+
+app.listen(process.env.PORT, function() {
+    console.log(`Servidor iniciado en http://${process.env.HOST}:${process.env.PORT}`);
 });
 
-app.get('/', function (req, res) {
-    db.respuesta.mensaje = "Inicio";
-    res.send(db.respuesta);
-})
+//manejador de errores
 
-//Endpoint para obtener paises de la DB
-app.get('/paises',cors(midd.corsOption),function (req, res) {
-    res.send(db.Paises)
-})
+app.use(midd.errorManager);
 
-app.post('/paises',midd.Autenticar, function (req, res) {
-    if (!req.body.nombre || !req.body.codigo) {
+/*
+app.use((err, req, res, next) => {
+    if (err) {
+        console.error(err);
+        if (!res.headersSent) {
+            res.status(500).send("Error en el servidor" + err.message);
+        } else {
+            next();
+        }
+    }
+});*/
+
+
+app.get('/inicio', (opc) => {
+    //console.log(`Esta es la respuesta ---> ${db.getProductsML("Inicio")}`);
+    let respProd = db.getProductsML("Inicio");
+
+
+    console.log(`Esta es la respuesta ---> ${JSON.stringify(respProd)}`);
+    return respProd;
+});
+
+//Endpoint para obtener el Carrito
+app.get('/cart', cors(midd.corsOption), function(req, res) {
+    res.send(db.Cart);
+});
+
+
+app.post('/cart', midd.Autenticar, function(req, res) {
+    if (!req.body.id || !req.body.nombre || !req.body.cantidad || !req.body.precio) {
         db.respuesta = {
             codigo: 502,
             error: true,
             mensaje: 'Es indispensable enviar nombre y código del país'
-        }
+        };
     } else {
-        if (db.buscaPais(req.body.nombre)) {
-            db.respuesta = {
-                codigo: 503,
-                error: true,
-                mensaje: 'País ya registrado'
-                
-            }
-        } else {
-            db.nuevoPais(req.body.nombre, req.body.codigo)
-
+        if (db.buscaProducto(req.body.id)) {
             db.respuesta = {
                 codigo: 200,
                 error: false,
-                mensaje: '¨País creado'
-            }
-        }
-    }
-    res.send(db.respuesta)
-})
+                mensaje: 'Producto añadido'
 
-app.delete('/paises/:pais', function (req, res) {
-
-    if (!db.buscaPais(req.params.pais)) {
-        db.respuesta = {
-            codigo: 500,
-            error: true,
-            mensaje: req.params.pais
-        }
-    } else {
-        db.borraPais(req.params.pais)
-        db.respuesta = {
-            codigo: 200,
-            error: false,
-            mensaje: '¨País eliminado'
+            };
+        } else {
+            db.nuevoProducto(req.body.id, req.body.nombre, req.body.cantidad, req.body.precio)
+            db.respuesta = {
+                codigo: 200,
+                error: false,
+                mensaje: '¨Producto Agregado'
+            };
         }
     }
     res.send(db.respuesta);
-})
+});
+
+
+
+app.delete('/cart/:id', function(req, res) {
+    if (db.borraProducto(req.params.id)) {
+        db.respuesta = {
+            codigo: 200,
+            error: false,
+            mensaje: 'Producto eliminado'
+        };
+    } else {
+        db.respuesta = {
+            codigo: 421,
+            error: true,
+            mensaje: 'Producto no existe'
+        };
+    }
+    res.send(db.respuesta);
+});
