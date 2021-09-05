@@ -1,56 +1,158 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <title>Mi tienda</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/283e7ac55c.js" crossorigin="anonymous"></script>
+    <meta name="description" content=" ">
+    <meta name="author" content="Leonardo Daniel Figueroa Guel && Kevin David Tames Hernandez">
+    <meta name="generator" content="ShopOnline Tecla 1.1">
+    <title>Tecla Tienda Online</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        
+        #ARTICULO-ML {
+            display: flex-between;
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="./assets/dist/css/form-validation.css" rel="stylesheet">
 </head>
 
+<body class="bg-light">
 
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-fixed sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-home"></i> Inicio</a>
-                    <a class="nav-link" href="#">Features</a>
-                    <a class="nav-link" href="#">Pricing</a>
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
+    <div class="container">
+        <main>
+            <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="#" onclick="getProducts()">Shop Online</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                    <div class="collapse navbar-collapse" id="navbarScroll">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                            <li class="nav-item">
+                                <a class="nav-link active text-white" aria-current="page" href="/index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="#" onclick="execute('Tendencia');">Tendencias ML</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Link
+                        </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <form class="d-flex align-center position-absolute top-1 end-0">
+                                <li class="nav-item">
+                                    <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Iniciarse sesión</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Registrarse</a>
+                                </li>
+                            </form>
+                        </ul>
+                        <form class="d-flex position-absolute top-45 start-50">
+                            <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
+                            <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
+                        </form>
+                    </div>
                 </div>
+            </nav>
+            <div class="container d-flex justify-content-end position-sticky form-control">
+                <div class="col-md-3 order-md-last position-sticky">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3 form-control">
+                        <span class="text-muted" id="yourCart">Tu carrito</span>
+                        <span class="badge bg-secondary rounded-pill">3</span>
+                    </h4>
+                    <ul class="list-group mb-3" id="listCart">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+
+                            <h6 class="my-0" id="nameProduct"></h6>
+                            <span class="text-muted" id="priceCart"></span>
+                        </li>
+
+
+                    </ul>
+
+                    <ul>
+                        <li class="list-group-item d-flex justify-content-between bg-light ">
+                            <div class="text-success">
+                                <h6 class="my-0">Código aplicado</h6>
+                                <small>EXAMPLECODE</small>
+                            </div>
+                            <span class="text-success">−$5</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (MNX)</span>
+                            <strong id="totalCart"></strong>
+                        </li>
+                    </ul>
+
+                    <form class="card p-2">
+                        <div class="input-group">
+                            <p>¿Tienes un código?</p>
+                            <input type="text" class="form-control" placeholder="Código de promoción">
+                            <button type="submit" class="btn btn-secondary">Canjear</button>
+                            <button class="btn btn-primary" type="submit">Continuar con la compra</button>
+                        </div>
+                    </form>
+                </div>
+
+                <hr class="my-4">
+
+                </form>
+                <form>
+                    <div id="articleDivTrend"></div>
+                    <div class="container" id="articleDiv" style="margin-top: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; align-items: flex-start;">
+
+                    </div>
             </div>
-        </div>
-    </nav>
-    <div class="container-fluid" id="fondoBanner">
-        <div class="container" id="banner">
-            <h1>Bienvenida(o)</h1>
-        </div>
-    </div>
-
-    <div class="container" id="products">
+            </form>
 
     </div>
+    </div>
+    </main>
 
-    <footer class="footer mt-auto py-3 bg-dark">
-        <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
-        </div>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2021 TECLA CODING ACADEMY LEO & DAVE</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
     </footer>
+    </div>
 
 
-    <script src="scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./assets/dist/js/form-validation.js"></script>
+    <script src="./scripts.js"></script>
 </body>
 
 </html>
