@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require('dotenv');
 const db = require('./db/db');
 const midd = require('./middlewares/midd');
+const apis = require('./apis/apis');
 const cors = require('cors');
 const { urlencoded } = require("express");
 const app = express();
@@ -13,7 +14,6 @@ app.use(express.json());
 app.use(cors());
 app.use(midd.log);
 app.use(midd.limitador);
-//app.use(db.getProducts);
 
 
 //manejador de errores
@@ -28,51 +28,46 @@ app.listen(process.env.PORT, function() {
 
 app.use(midd.errorManager);
 
-/*
-app.use((err, req, res, next) => {
-    if (err) {
-        console.error(err);
-        if (!res.headersSent) {
-            res.status(500).send("Error en el servidor" + err.message);
-        } else {
-            next();
-        }
-    }
-});*/
 
+app.get('/inicio', async(req, res) => {
 
-app.get('/inicio', (opc) => {
-    //console.log(`Esta es la respuesta ---> ${db.getProductsML("Inicio")}`);
-    let respProd = db.getProductsML("Inicio");
+    let respProd = await apis.getProductsML("Inicio");
 
+    let disponibles = await db.addAvailables(respProd);
+    //console.log(disponibles);
+    res.send(respProd);
 
-    console.log(`Esta es la respuesta ---> ${JSON.stringify(respProd)}`);
-    return respProd;
 });
+
 
 //Endpoint para obtener el Carrito
 app.get('/cart', cors(midd.corsOption), function(req, res) {
     res.send(db.Cart);
 });
 
+app.get('/productsAvailables', cors(midd.corsOption), function(req, res) {
+    res.send(db.ProdDisp);
+});
+
 
 app.post('/cart', midd.Autenticar, function(req, res) {
+    console.log(`Recibiendo peticion para agregar el articulo ${req.body}`);
     if (!req.body.id || !req.body.nombre || !req.body.cantidad || !req.body.precio) {
         db.respuesta = {
             codigo: 502,
             error: true,
-            mensaje: 'Es indispensable enviar nombre y código del país'
+            mensaje: 'Es indispensable enviar Id, nombre, cantidad y precio del producto'
         };
     } else {
         if (db.buscaProducto(req.body.id)) {
             db.respuesta = {
                 codigo: 200,
                 error: false,
-                mensaje: 'Producto añadido'
+                mensaje: 'Se ha agregado otro producto igual al carrito'
 
             };
         } else {
-            db.nuevoProducto(req.body.id, req.body.nombre, req.body.cantidad, req.body.precio)
+            db.nuevoProducto(req.body.id, req.body.nombre, req.body.cantidad, req.body.precio);
             db.respuesta = {
                 codigo: 200,
                 error: false,
