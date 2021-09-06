@@ -1,4 +1,6 @@
 const rateLimit = require('express-rate-limit');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 const corsOption = {
@@ -25,11 +27,12 @@ log = function(req, res, next) {
 };
 
 Autenticar = function(req, res, next) {
-    const { nombre, codigo, clave } = req.body;
-    if (clave == "Una clave para protegernos a todos") {
+    console.log(`Esto esta pasando por autenticación del midd ----> ${JSON.stringify(req.body)}`)
+    const { id, nombre, cantidad, precio, clave } = req.body;
+    if (clave == process.env.CLAVE_API) {
         return next();
     } else {
-        return res.status(400).json("No dijiste la palabra mágica")
+        return res.status(400).json("Tu clave es erronea, por favor verificala");
     }
 };
 

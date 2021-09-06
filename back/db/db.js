@@ -1,5 +1,9 @@
+let ProdDisp = {};
+let IdPRodDisp = {
+    cont: 0
+};
 let Cart = {};
-let Id = {
+let IdCart = {
     cont: 0
 };
 
@@ -15,50 +19,30 @@ class Producto {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.Id = Id.cont;
+        this.IdCart = IdCart.cont;
+        this.IdPRodDisp = IdPRodDisp.cont;
     }
 
 }
+const addAvailables = (prodAvailables) => {
 
+    for (let i = 0; i < prodAvailables.results.length; i++) {
 
-const getProductsML = (opc) => {
+        ProdDisp[prodAvailables.results[i].id] = new Producto(prodAvailables.results[i].id, prodAvailables.results[i].title, '', prodAvailables.results[i].price);
+        IdPRodDisp.cont++;
 
-    let url;
-    let type;
-    switch (opc) {
-        case "Inicio":
-            url = process.env.ML_URL_START;
-            type = 'articleDiv';
-            break;
-        case "Busqueda":
-            url = `${process.env.ML_URL_SEARCH}${articleSearch}`;
-            console.log(`Entramos en la búsqueda ${articleSearch}
-            URL de la búsqueda ${url}`);
-            type = 'articleDiv';
-
-            break;
-        case "Tendencia":
-            url = ML_URL_TRENDS;
-            console.log(`Entramos en las Tendencias`);
-            type = 'articleDivTrend';
-            break;
-        default:
-            break;
     }
 
-    console.log(`URL para obtener productos   ${url}`);
-
-    return url;
+    //console.log(`Productos disponibles ${ProdDisp}`);
+    return ProdDisp;
 };
-
-
 
 const nuevoProducto = (id, nombre, cantidad, precio) => {
     try {
         Cart[id] = new Producto(id, nombre, cantidad, precio);
-        Id.cont++;
+        IdCart.cont++;
     } catch (error) {
-        throw new Error({ "message": "MATRIX..... System handler" });
+        throw new Error({ "message": "Ha ocurrido un error al agregar el producto" });
     }
 };
 
@@ -73,6 +57,15 @@ const buscaProducto = function(id) {
     }
 };
 
+const buscaProductoDisponible = function(id) {
+    if (ProdDisp.hasOwnProperty(id)) {
+        ProdDisp[id].cantidad++;
+        return true;
+    } else {
+        return false;
+    }
+};
+
 const borraProducto = function(id) {
     if (Cart.hasOwnProperty(id)) {
         console.log(Cart[id]);
@@ -81,7 +74,7 @@ const borraProducto = function(id) {
             Cart[id].cantidad = Cart[id].cantidad - 1;
             return true;
         } else {
-            delete Cart[id]
+            delete Cart[id];
             return true;
         }
     } else {
@@ -89,4 +82,4 @@ const borraProducto = function(id) {
     }
 };
 
-module.exports = { Cart, respuesta, nuevoProducto, buscaProducto, borraProducto, getProductsML };
+module.exports = { Cart, ProdDisp, respuesta, nuevoProducto, buscaProducto, borraProducto, addAvailables, buscaProductoDisponible };
