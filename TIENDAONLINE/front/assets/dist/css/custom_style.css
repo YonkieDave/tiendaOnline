@@ -1,0 +1,41 @@
+
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 2.5rem;
+            }
+        }
+        
+        #carousel{
+            height: fit-content;
+            color: aliceblue;
+        }
+        #articleDiv {
+            margin-top: 10px; 
+            display: flex; 
+            justify-content: space-around; 
+            flex-wrap: wrap; 
+            align-items: flex-start;
+        }
+        #tarjetaArticulo{
+            width: 15rem; 
+            margin-top: 10px
+        }
+        #boton_carrito{
+            float: right;
+            color: white;
+            background-color:black;
+        }
+        #produtos_carrito{
+            color: white;
+            position: absolute;
+            top: 10px; 
+            position: relative;
+        }

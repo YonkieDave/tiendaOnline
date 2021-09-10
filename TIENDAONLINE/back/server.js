@@ -49,6 +49,33 @@ app.get('/productsAvailables', cors(midd.corsOption), function(req, res) {
     res.send(db.ProdDisp);
 });
 
+app.post('/validateProd', (req, res) => {
+console.log(`Se buscaá artículo en artículos disponibles ${req.body}`);
+if (!req.body.id) {
+    db.respuesta = {
+        codigo: 502,
+        error: true,
+        mensaje: 'Es indispensable enviar Id del producto'
+    };
+    }if(db.ProdDisp.hasOwnProperty(req.body)){
+        
+        console.log('AXIOS en el server', process.env.ADD_CART);
+        return await axios.post(process.env.ADD_CART, {
+            id: db.ProdDisp.id,
+            nombre: db.ProdDisp.nombre,
+            cantidad: db.ProdDisp.cantidad,
+            precio: db.ProdDisp.precio,
+            clave: process.env.CLAVE_API
+        }).then(response => {
+           console.log(`producto agregado --->  ${response}`)
+        }).catch(e => {
+            console.log(e);
+        });
+        
+    }
+
+});
+
 
 app.post('/cart', midd.Autenticar, function(req, res) {
     console.log(`Recibiendo peticion para agregar el articulo ${req.body}`);

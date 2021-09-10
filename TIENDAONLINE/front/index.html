@@ -10,35 +10,16 @@
     <title>Tecla Tienda Online</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
     <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-        
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-        
-        #ARTICULO-ML {
-            display: flex-between;
-        }
-    </style>
-
-
+    <link href="./assets/dist/css/custom_style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    
     <!-- Custom styles for this template -->
     <link href="./assets/dist/css/form-validation.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
 
-    <div class="container">
+    <div class="container-fluid" >
         <main>
             <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
                 <div class="container-fluid">
@@ -56,83 +37,118 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Link
+                          Usuarios
                         </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="#">Registrarse</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    <li><a class="dropdown-item" href="#">Olvide mi contraseña</a></li>
                                 </ul>
                             </li>
-                            <form class="d-flex align-center position-absolute top-1 end-0">
-                                <li class="nav-item">
-                                    <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Iniciar sesión</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link disabled text-white" href="#" tabindex="-1" aria-disabled="true">Registrarse</a>
-                                </li>
-                            </form>
+                            <a id="produtos_carrito" href=""><i class="fas fa-shopping-cart"></i></a>
+                           
                         </ul>
-                        <form class="d-flex position-absolute top-45 start-50">
+                        <form class="d-flex">
                             <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
                             <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
                         </form>
                     </div>
                 </div>
             </nav>
-            <div class="container d-flex justify-content-end position-sticky form-control">
-                <div class="col-md-3 order-md-last position-sticky">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3 form-control">
-                        <span class="text-muted" id="yourCart">Tu carrito</span>
-                        <span class="badge bg-secondary rounded-pill"></span>
-                    </h4>
-                    <ul class="list-group mb-3" id="listCart">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-
-                            <h6 class="my-0" id="nameProduct"></h6>
-                            <span class="text-muted" id="priceCart"></span>
-                        </li>
-
-
-                    </ul>
-
-                    <ul>
-                        <li class="list-group-item d-flex justify-content-between bg-light ">
-                            <div class="text-success">
-                                <h6 class="my-0">Código aplicado</h6>
-                                <small>EXAMPLECODE</small>
-                            </div>
-                            <span class="text-success">−$5</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between">
-                            <span>Total (MNX)</span>
-                            <strong id="totalCart"></strong>
-                        </li>
-                    </ul>
-
-                    <form class="card p-2">
-                        <div class="input-group">
-                            <p>¿Tienes un código?</p>
-                            <input type="text" class="form-control" placeholder="Código de promoción">
-                            <button type="submit" class="btn btn-secondary">Canjear</button>
-                            <button class="btn btn-primary" type="submit">Continuar con la compra</button>
-                        </div>
-                    </form>
+            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="assets/img/slide1.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5 id="carousel" >Disfruta de la comodidad de comprar en linea</h5>
+                      <p id="carousel">Productos celulares a un click de distacia</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="assets/img/slide2.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5 id="carousel">Realiza tu pedido</h5>
+                      <p id="carousel">Envios a todo méxico sin costo extra.</p>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/slide3.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5 id="carousel">Calidad</h5>
+                      <p id="carousel">Las gamas más altas y economicas al alcance de todos.</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+           
 
                 <hr class="my-4">
 
                 </form>
                 <form>
-                    <div id="articleDivTrend"></div>
-                    <div class="container" id="articleDiv" style="margin-top: 20px; display: flex; justify-content: space-around; flex-wrap: wrap; align-items: flex-start;">
+                    <div class="container-fluid" id="articleDivTrend"></div>
+                    <div class="container-fluid" id="articleDiv" >
 
                     </div>
             </div>
             </form>
+           <!-- <form>
+                <div class="container d-flex justify-content-end position-sticky form-control">
+                    <div class="col-md-3 order-md-last position-sticky">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3 form-control">
+                            <span class="text-muted" id="yourCart">Tu carrito</span>
+                            <span class="badge bg-secondary rounded-pill"></span>
+                        </h4>
+                        <ul class="list-group mb-3" id="listCart">
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+    
+                                <h6 class="my-0" id="nameProduct"></h6>
+                                <span class="text-muted" id="priceCart"></span>
+                            </li>
+    
+    
+                        </ul>
+    
+                        <ul>
+                            <li class="list-group-item d-flex justify-content-between bg-light ">
+                                <div class="text-success">
+                                    <h6 class="my-0">Código aplicado</h6>
+                                    <small>EXAMPLECODE</small>
+                                </div>
+                                <span class="text-success">−$5</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (MNX)</span>
+                                <strong id="totalCart"></strong>
+                            </li>
+                        </ul>
+    
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <p>¿Tienes un código?</p>
+                                <input type="text" class="form-control" placeholder="Código de promoción">
+                                <button type="submit" class="btn btn-secondary">Canjear</button>
+                                <button class="btn btn-primary" type="submit">Continuar con la compra</button>
+                            </div>
+                        </form>
+                    </div>
+            </form>-->
 
     </div>
     </div>

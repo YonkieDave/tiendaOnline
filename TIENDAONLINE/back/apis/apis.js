@@ -19,7 +19,7 @@ const getProductsML = async(opc) => {
 
             break;
         case "Tendencia":
-            url = ML_URL_TRENDS;
+            url = process.env.ML_URL_TRENDS;
             console.log(`Entramos en las Tendencias`);
             type = 'articleDivTrend';
             break;

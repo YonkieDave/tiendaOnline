@@ -15,12 +15,12 @@ const CreateArticle = async(articles) => {
         divProducts.setAttribute("id", "p" + i);
         divProducts.setAttribute("class", "Card");
         let producto = `
-            <div class = "card" style = "width: 18rem; margin-top: 20px">
+            <div id="tarjetaArticulo" class = "card">
                 <img src = ${articles.results[i].thumbnail}/50px90/" alt = "Card image cap" > 
                     <div class = "card-title form-control" " > 
                         <h5 id = ${articles.results[i].id} class = "card-title"> ${articles.results[i].title}</h5>
                         <h3 id=${j}>$${articles.results[i].price}</h3 > 
-                        <a is= "5" name= "${articles.results[i].title}" value = "${articles.results[i].price}" class = "btn btn-primary" id = "Boton ${j}" onclick ="addCart('${articles.results[i].id}','${articles.results[i].title}','1','${articles.results[i].price}');" > Agregar al carrito </a>
+                        <a name= "${articles.results[i].title}" value = "${articles.results[i].price}" class = "btn btn-primary" id = "boton_carrito" onclick ="addCart('${articles.results[i].id}','${articles.results[i].title}','1','${articles.results[i].price}');" ><i class="fas fa-cart-plus"></i> </a>
                     </div>
             </div>`;
         divProducts.innerHTML += producto;
