@@ -17,35 +17,35 @@
     <link href="./assets/dist/css/form-validation.css" rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body class="bg-secondary">
 
     <div class="container-fluid" >
         <main>
             <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-white" href="#" onclick="getProducts()">Shop Online</a>
+                    <a class="navbar-brand text-white" href="./index.html" >Shop Online</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
                     <div class="collapse navbar-collapse" id="navbarScroll">
                         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                             <li class="nav-item">
-                                <a class="nav-link active text-white" aria-current="page" href="/index.html">Home</a>
+                                <a class="nav-link active text-white" aria-current="page" href="./index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#" onclick="execute('Tendencia');">Tendencias ML</a>
+                                <a class="nav-link text-white" href="./tendencias.html" onclick="execute('Tendencia');">Tendencias ML</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Usuarios
                         </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
-                                    <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                                    <li><a class="dropdown-item" href="./login.html">Iniciar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="./register.html">Registrarse</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Olvide mi contraseña</a></li>
+                                    <li><a class="dropdown-item" href="./restPass.html">Olvide mi contraseña</a></li>
                                 </ul>
                             </li>
                             <a id="produtos_carrito" href=""><i class="fas fa-shopping-cart"></i></a>
@@ -108,47 +108,6 @@
                     </div>
             </div>
             </form>
-           <!-- <form>
-                <div class="container d-flex justify-content-end position-sticky form-control">
-                    <div class="col-md-3 order-md-last position-sticky">
-                        <h4 class="d-flex justify-content-between align-items-center mb-3 form-control">
-                            <span class="text-muted" id="yourCart">Tu carrito</span>
-                            <span class="badge bg-secondary rounded-pill"></span>
-                        </h4>
-                        <ul class="list-group mb-3" id="listCart">
-                            <li class="list-group-item d-flex justify-content-between lh-sm">
-    
-                                <h6 class="my-0" id="nameProduct"></h6>
-                                <span class="text-muted" id="priceCart"></span>
-                            </li>
-    
-    
-                        </ul>
-    
-                        <ul>
-                            <li class="list-group-item d-flex justify-content-between bg-light ">
-                                <div class="text-success">
-                                    <h6 class="my-0">Código aplicado</h6>
-                                    <small>EXAMPLECODE</small>
-                                </div>
-                                <span class="text-success">−$5</span>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between">
-                                <span>Total (MNX)</span>
-                                <strong id="totalCart"></strong>
-                            </li>
-                        </ul>
-    
-                        <form class="card p-2">
-                            <div class="input-group">
-                                <p>¿Tienes un código?</p>
-                                <input type="text" class="form-control" placeholder="Código de promoción">
-                                <button type="submit" class="btn btn-secondary">Canjear</button>
-                                <button class="btn btn-primary" type="submit">Continuar con la compra</button>
-                            </div>
-                        </form>
-                    </div>
-            </form>-->
 
     </div>
     </div>

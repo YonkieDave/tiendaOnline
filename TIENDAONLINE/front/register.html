@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>Tecla Tienda Online</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+    <link href="./assets/dist/css/custom_style.css" rel="stylesheet">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-secondary  row justify-content-md-center ">
+    <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="./index.html" >Shop Online</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="./tendencias.html" onclick="execute('Tendencia');">Tendencias ML</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Usuarios
+                </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="./login.html">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="./register.html">Registrarse</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="./restPass.html">Olvide mi contraseña</a></li>
+                        </ul>
+                    </li>
+                    <a id="produtos_carrito" href=""><i class="fas fa-shopping-cart"></i></a>
+                   
+                </ul>
+                <form class="d-flex">
+                    <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
+                    <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <main>
+            <div class="py-5 text-center">
+                <!--<img class="d-block mx-auto mb-4" src="./assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+               -->
+                <h2>Datos para el registro</h2>
+                <p class="lead">Por favor ingresa tus datos para crear una cuenta con nosotros</p>
+            </div>
+    </div>
+    <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Ingresa tus datos</h4>
+        <form class="needs-validation" novalidate>
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <label for="firstName" class="form-label">Nombre(s)</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        El campo de nombre es requerido
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Apellidos</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        El campo de apellidos es requerido
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="username" class="form-label">Correo eléctronico</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text">@</span>
+                        <input type="text" class="form-control" id="username" placeholder="ejemplo@dominio.com" required>
+                        <div class="invalid-feedback">
+                            El correo es requerido
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="email" class="form-label">Correo secundario <span class="text-muted">(Opcional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                    <div class="invalid-feedback">
+                        ingrese un correo valido por favor.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="address" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" id="address" placeholder="Calle, número, código postal, colonia y delegación" required>
+                    <div class="invalid-feedback">
+                        Por favor ingrese una dirección de envio
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="address2" class="form-label">Dirección 2 <span class="text-muted">(Optional)</span></label>
+                    <input type="text" class="form-control" id="address2" placeholder="Calle, número, código postal, colonia y delegación">
+                </div>
+
+                <div class="col-md-5">
+                    <label for="country" class="form-label">Ciudad</label>
+                    <select class="form-select" id="country" required>
+                <option value="">Seleccione...</option>
+                <option>Ciudad de México</option>
+              </select>
+                    <div class="invalid-feedback">
+                        Seleccione una ciudad dentro de las opciones.
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="zip" class="form-label">Código Postal</label>
+                    <input type="text" class="form-control" id="zip" placeholder="" required>
+                    <div class="invalid-feedback">
+                        Código postal requerido
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Registrar</button>
+        </form>
+    </div>
+    </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017–2021 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+    </div>
+
+
+
+    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./assets/dist/js/form-validation.js"></script>
+    <script src="./scripts.js"></script>
+</body>
+
+</html>

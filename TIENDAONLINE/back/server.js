@@ -9,6 +9,7 @@ const app = express();
 dotenv.config();
 
 
+
 //Middlelware
 app.use(express.json());
 app.use(cors());
@@ -49,18 +50,43 @@ app.get('/productsAvailables', cors(midd.corsOption), function(req, res) {
     res.send(db.ProdDisp);
 });
 
-app.post('/validateProd', (req, res) => {
-console.log(`Se buscaá artículo en artículos disponibles ${req.body}`);
+app.post('/validateProd', async (req, res) => {
+console.log(`Se buscaá artículo en artículos disponibles ${JSON.stringify(req.body)}`);
 if (!req.body.id) {
     db.respuesta = {
         codigo: 502,
         error: true,
         mensaje: 'Es indispensable enviar Id del producto'
     };
-    }if(db.ProdDisp.hasOwnProperty(req.body)){
-        
+    }else{
+        if(db.ProdDisp.hasOwnProperty(req.body.id)){
+            
+            console.log(`objeto req.body.id -----> ${req.body.id}
+            
+            objeto db.ProdDisp --------> ${JSON.stringify(db.prodDisp.id['MLM606240593'])}` );
+            
+            
+            
+            //let idProdAdd = JSON.stringify(db.ProdDisp);
+            //let validaDispo =  (idProdAdd).find(idProdAdd => req.body.id);
+            //console.log("este es el encontrado", validaDispo);
+
+           //console.log("producto disponible", idProdAdd);
+            let prodCart = {
+                id: db.ProdDisp.id,
+                nombre: db.ProdDisp.nombre,
+                cantidad: 1,
+                precio: db.ProdDisp.precio
+            };
+            console.log(`Este es el nuevo artículo por agregar -----> ${JSON.stringify(prodCart)}`);
+        }
+       // console.log('Arreglo de objetos disponibles en el server', db.ProdDisp);
+        //let validaDispo =  (db.ProdDisp.id).find(req.body.id);
+        //let valida = (db.ProdDisp.hasOwnProperty(req.body.id));
         console.log('AXIOS en el server', process.env.ADD_CART);
-        return await axios.post(process.env.ADD_CART, {
+
+        console.log('Se encontro el artíclo  para agregar al carrito ---->', JSON.stringify(validaDispo));
+        return (await axios.post(process.env.ADD_CART, {
             id: db.ProdDisp.id,
             nombre: db.ProdDisp.nombre,
             cantidad: db.ProdDisp.cantidad,
@@ -70,7 +96,8 @@ if (!req.body.id) {
            console.log(`producto agregado --->  ${response}`)
         }).catch(e => {
             console.log(e);
-        });
+        })
+        );
         
     }
 

@@ -20,7 +20,7 @@ const CreateArticle = async(articles) => {
                     <div class = "card-title form-control" " > 
                         <h5 id = ${articles.results[i].id} class = "card-title"> ${articles.results[i].title}</h5>
                         <h3 id=${j}>$${articles.results[i].price}</h3 > 
-                        <a name= "${articles.results[i].title}" value = "${articles.results[i].price}" class = "btn btn-primary" id = "boton_carrito" onclick ="addCart('${articles.results[i].id}','${articles.results[i].title}','1','${articles.results[i].price}');" ><i class="fas fa-cart-plus"></i> </a>
+                        <a name= "${articles.results[i].title}" value = "${articles.results[i].price}" class = "btn btn-primary" id = "boton_carrito" onclick ="addCart('${articles.results[i].id}');" ><i class="fas fa-cart-plus"></i> </a>
                     </div>
             </div>`;
         divProducts.innerHTML += producto;
@@ -36,16 +36,31 @@ const searchArticle = () => {
     execute("Busqueda", articleSearch);
 };
 
-const addCart = async(id, nombre, cantidad, precio) => {
-    console.log(`Se va a enviar al carrito el artículo ${nombre}`);
-    let newPost = {
+const addCart = async(id) => {
+    console.log(`Se va a enviar al carrito el artículo ${id}`);
+   /* let newPost = {
         id: id,
         nombre: nombre,
         cantidad: cantidad,
         precio: precio,
         clave: 'clave',
-    };
-    await fetch('http://localhost:3001/cart', {
+    };*/
+   /* await fetch('http://localhost:3001/cart', {
+            method: "POST",
+            body: JSON.stringify(newPost),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(idProd) {
+            alert(JSON.stringify(idProd));
+        });*/
+
+        let newPost = {
+            id: id
+        };
+        await fetch('http://localhost:3001/validateProd', {
             method: "POST",
             body: JSON.stringify(newPost),
             headers: {

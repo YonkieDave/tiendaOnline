@@ -30,6 +30,7 @@ const addAvailables = (prodAvailables) => {
 
         ProdDisp[prodAvailables.results[i].id] = new Producto(prodAvailables.results[i].id, prodAvailables.results[i].title, '', prodAvailables.results[i].price);
         IdPRodDisp.cont++;
+       // console.log(`Productos disponibles ${JSON.stringify(ProdDisp)}`);
 
     }
 
@@ -83,3 +84,6 @@ const borraProducto = function(id) {
 };
 
 module.exports = { Cart, ProdDisp, respuesta, nuevoProducto, buscaProducto, borraProducto, addAvailables, buscaProductoDisponible };
+
+
+
