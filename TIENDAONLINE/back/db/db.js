@@ -25,6 +25,7 @@ class Producto {
 
 }
 const addAvailables = (prodAvailables) => {
+    //console.log("productos agregar disponibles ", prodAvailables); 
 
     for (let i = 0; i < prodAvailables.results.length; i++) {
 

@@ -33,13 +33,24 @@ app.use(midd.errorManager);
 app.get('/inicio', async(req, res) => {
 
     let respProd = await apis.getProductsML("Inicio");
-
     let disponibles = await db.addAvailables(respProd);
-    //console.log(disponibles);
     res.send(respProd);
 
 });
+app.get('/trend', async(req, res) => {
+    
+    let respProdTrend = await apis.getProductsML("Tendencia");
+    res.send(respProdTrend);
 
+});
+
+app.post('/searchProd', async(req, res) => {
+    
+    let search = await apis.getProductsML("Busqueda",req.body.prod);
+    let disponibles = await db.addAvailables(search);
+    res.send(search);
+
+});
 
 //Endpoint para obtener el Carrito
 app.get('/cart', cors(midd.corsOption), function(req, res) {

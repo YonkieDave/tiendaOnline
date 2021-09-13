@@ -33,7 +33,25 @@ const CreateArticle = async(articles) => {
 const searchArticle = () => {
     let articleSearch = document.getElementById("busqueda").value;
     console.log(`Se obtuvo la búsqueda ${articleSearch}`);
-    execute("Busqueda", articleSearch);
+    searchProducts(articleSearch);
+};
+const searchProducts = async(prod) => {
+    let newSearch = {
+        prod: prod
+    };
+    let respURL = await fetch('http://localhost:3001/searchProd', {
+            method: "POST",
+            body: JSON.stringify(newSearch),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+        .then(function(res) { return res.json(); })
+        ;
+    
+        console.log("Articlulos que se van a pintar resultado de la búsqueda ", respURL);
+    CreateArticle(respURL);
+
 };
 
 const addCart = async(id) => {

@@ -2,7 +2,7 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const getProductsML = async(opc) => {
+const getProductsML = async(opc,articleSearch) => {
 
     let url;
     let type;
