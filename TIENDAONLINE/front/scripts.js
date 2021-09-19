@@ -3,13 +3,16 @@ const getProducts = async() => {
     let respURL = await fetch(`http://localhost:3001/inicio`);
     await respURL.json().then((s) => respURL = s);
 
+   //console.log("Respuesta en el front " + respURL);
+
     CreateArticle(respURL);
 
 };
 
 const CreateArticle = async(articles) => {
     let j = 0;
-    console.log(articles.results);
+    //console.log("productos en el front " + JSON.stringify(articles));
+    //console.log(articles.results);
     for (let i = 0; i < articles.results.length; i++) {
         const divProducts = document.createElement("div");
         divProducts.setAttribute("id", "p" + i);
