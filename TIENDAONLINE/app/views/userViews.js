@@ -1,5 +1,5 @@
-const midd = require('../middlewares/user')
-const userService = require('../services/user')
+const midd = require('../../middlewares/user')
+const userService = require('../../services/user')
 
 module.exports = (app) => {
     app.post('/login', async (req, res) => {
@@ -7,7 +7,9 @@ module.exports = (app) => {
         try {
             let result = await userService.userValidate(user)
             if (result) {
-                let token = await userService.tokenGeneration(user.user)
+                console.log("Se va a generar el token de inicio de sesion ", result);
+                let token = await userService.tokenGeneration(user.user);
+                console.log("token de inicio de sesion ", token);
                 res.json(token)
             }
         } catch (err) {

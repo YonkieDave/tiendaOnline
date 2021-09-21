@@ -1,8 +1,10 @@
-const userDB = require('../db/user')
+const userDB = require('../app/model/userModel')
 const jwt = require('jsonwebtoken')
 
 module.exports.tokenGeneration = async (data) => {
+    console.log("generación del token ", data);
     const result = jwt.sign({ data }, process.env.SECRET_KEY);
+    console.log("Token generado", result);
     return result
 }
 
@@ -27,9 +29,11 @@ module.exports.userList = async () => {
 module.exports.userCreator = async (user) => {
     let newUser = {
         name: user.name,
-        user: user.user,
-        lastname: user.lastname,
+        lastname1: user.lastname1,
+        lastname2: user.lastname2,
         email: user.email,
+        address: user.address,
+        phone: user.phone,
         password: user.password,
     }
     try {

@@ -1,12 +1,18 @@
 var express = require('express');
 var app = express();
 require('dotenv').config();
-const sequelize = require('./db/conexion');
-const userRoutes = require('./routes/user');
-const cartRoutes = require('./routes/cart');
-const categoriesRoutes = require('./routes/categories');
+
+const sequelize = require('./db/conection');
+const userViews = require('./app/views/userViews');
+const cartViews = require('./app/views/cartViews');
+const categoriesViews = require('./app/views/categoriesViews');
 
 app.use(express.json())
+
+app.use(express.static(__dirname + 'public'));
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
 async function serverStart() {
   try {
     await sequelize.authenticate();
@@ -22,6 +28,6 @@ async function serverStart() {
 serverStart();
 
 //Routes
-userRoutes(app);
-cartRoutes(app);
-categoriesRoutes(app);
+userViews(app);
+cartViews(app);
+categoriesViews(app);

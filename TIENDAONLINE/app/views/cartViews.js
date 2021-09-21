@@ -1,7 +1,7 @@
-const sequelize = require('../db/conexion');
-const db = require('../services/cart');
+const sequelize = require('../../db/conection');
+const db = require('../../services/cart');
 const cors = require('cors');
-const midd = require('../middlewares/cart');
+const midd = require('../../middlewares/cart');
 const axios = require('axios');
 
 

@@ -1,6 +1,6 @@
-const sequelize = require('../db/conexion');
-const db = require('../services/cart');
-const apis = require('../apis/apis');
+const sequelize = require('../../db/conection');
+const db = require('../../services/cart');
+const apis = require('../controller/apisController');
 
 module.exports = (app) => {
 
@@ -8,7 +8,8 @@ module.exports = (app) => {
 
         let respProd = await apis.getProductsML("Inicio");
         let disponibles = await db.addAvailables(respProd);
-        res.send(respProd);
+        res.render('index',respProd);
+        //res.send(respProd);
 
     });
     app.get('/trend', async(req, res) => {
