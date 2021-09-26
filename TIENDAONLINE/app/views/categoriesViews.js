@@ -15,7 +15,8 @@ module.exports = (app) => {
     app.get('/trend', async(req, res) => {
         
         let respProdTrend = await apis.getProductsML("Tendencia");
-        res.send(respProdTrend);
+       // res.send(respProdTrend);
+        res.render('trends',respProdTrend);
 
     });
 

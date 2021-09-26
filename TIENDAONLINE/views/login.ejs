@@ -1,62 +1,37 @@
 <%- include("headers/loginHeader") %>
 
 <body class="bg-secondary">
-  <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="./index.html" >Shop Online</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-        <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="./index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="./tendencias.html" onclick="execute('Tendencia');">Tendencias ML</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Usuarios
-            </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="./login.html">Iniciar Sesión</a></li>
-                        <li><a class="dropdown-item" href="./register.html">Registrarse</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="./restPass.html">Olvide mi contraseña</a></li>
-                    </ul>
-                </li>
-                <a id="produtos_carrito" href=""><i class="fas fa-shopping-cart"></i></a>
-               
-            </ul>
-            <form class="d-flex">
-                <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
-                <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
-            </form>
-        </div>
-    </div>
-  </nav>
     <form class="conteiner" >
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Correo Electronico</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">No compartas tu correo Electronicocon nadie.</div>
+
+<!------ Include the above in your HEAD tag ---------->
+    
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <i class="far fa-address-card fa-4x" ></i>
+    </div>
+      
+          <!-- Login Form -->
+          <form action="">
+            <input type="text" id="login" class="fadeIn second" name="login" placeholder="user">        
+            <input type="text" id="password" class="fadeIn third " name="login" placeholder="password">
+            <input type="submit" class="fadeIn fourth" value="Log In">
+          </form>
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover" id ="aLogin" href="#">Forgot Password?</a>
+          </div>
+      
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">dale aqui </label>
-        </div>
-        <button type="submit" class="btn btn-primary">Iniciar</button>
+      </div>
       </form>
 </body>
-<script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="./assets/dist/js/form-validation.js"></script>
-    <script src="./scripts.js"></script>
+    <script src="/assets/dist/js/form-validation.js"></script>
+    <script src="/js/scripts.js"></script>
 </html>

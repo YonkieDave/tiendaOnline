@@ -6,7 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.80.0">
+    <meta nam<!DOCTYPE html>
+    <html lang="es">
+    
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content=" ">
+        <meta name="author" content="Leonardo Daniel Figueroa Guel && Kevin David Tames Hernandez">
+        <meta name="generator" content="ShopOnline Tecla 1.1">
+        <title>Tecla Tienda Online</title>
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/custom_style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+        
+        <!-- Custom styles for this template -->
+        <link href="/css/form-validation.css" rel="stylesheet">
+    </head>
+    <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="/inicio" >Shop Online</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" aria-current="page" href="/inicio">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/trend" onclick="execute('Tendencia');">Tendencias ML</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Usuarios
+                </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item" href="/login">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="/register">Registrarse</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/restPass">Olvide mi contraseña</a></li>
+                        </ul>
+                    </li>
+                    <a id="produtos_carrito" href=""><i class="fas fa-shopping-cart"></i></a>
+                   
+                </ul>
+                <form class="d-flex">
+                    <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
+                    <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
+                </form>
+            </div>
+        </div>
+    </nav>
+        <hr class="my-4">
+    
+        </form>e="generator" content="Hugo 0.80.0">
     <title>Tecla Tienda Online</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">

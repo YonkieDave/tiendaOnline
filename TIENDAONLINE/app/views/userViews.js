@@ -2,7 +2,11 @@ const midd = require('../../middlewares/user')
 const userService = require('../../services/user')
 
 module.exports = (app) => {
+    app.get('/login', async (req, res) => {
+        res.render('login');
+    });
     app.post('/login', async (req, res) => {
+        res.render('login');
         let user = req.body
         try {
             let result = await userService.userValidate(user)
@@ -15,6 +19,9 @@ module.exports = (app) => {
         } catch (err) {
             res.status(400).send('Unregistered user')
         }
+    });
+    app.get('/register', async (req, res) => {
+        res.render('register');
     })
 
     app.get('/users', midd.userValidation, async (req, res) => {
