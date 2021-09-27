@@ -1,48 +1,46 @@
-<%- include("headers/checkOutHeader") %>
+<%- include("headers/checkoutHeader") %>
 
-<body class="bg-light  row justify-content-md-center">
-    <nav class="navbar navbar-expand-xl navbar sticky-top bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white" href="./index.html" >Shop Online</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="./index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="./tendencias.html" onclick="execute('Tendencia');">Tendencias ML</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Usuarios
-                </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="./login.html">Iniciar Sesión</a></li>
-                            <li><a class="dropdown-item" href="./register.html">Registrarse</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="./restPass.html">Olvide mi contraseña</a></li>
-                        </ul>
-                    </li>
-                    <a id="produtos_carrito" href=""><i class="fas fa-shopping-cart"></i></a>
-                   
-                </ul>
-                <form class="d-flex">
-                    <input id="busqueda" class="form-control me-2" type="search" placeholder="Búscar un artículo" aria-label="Search">
-                    <a class="btn btn-outline-success" onclick="searchArticle()" type="submit">Buscar</a>
-                </form>
-            </div>
-        </div>
-    </nav>
     <div class="container-fluid">
         <main>
             <div class="py-5 text-center">
-                <!--<img class="d-block mx-auto mb-4" src="./assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-               -->
+                <div>
+                    <form action="">
+                        <h2>Resumen de la compra</h2>
+                        <table class="table">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Precio</th>
+                        
+                              </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <% 
+                                console.log("número de iteraciones para carrito ", Object.keys(cart).length)
+                                console.log("número de iteraciones para carrito ", Object.values(cart)[0].nombre)
+                                let total = 0;
+                                for(let i = 0; i < Object.keys(cart).length; i++) { 
+                                  //  console.log("entramos al for ", result[0][i].id_cliente);
+                                    
+                        
+                                    %>
+                              <tr>
+                                <td><%= Object.values(cart)[i].nombre%></td>
+                                <td><%= Object.values(cart)[i].cantidad %></td>
+                                <td>$<%= Number(Object.values(cart)[i].precio) * Number(Object.values(cart)[i].cantidad) %></td>                               
+                              </tr>
+                              
+
+                              <%  
+                              total +=  Number(Object.values(cart)[i].precio);
+                            }  %>
+                              <td> TOTAL   $<%= total %></td>
+                            </tbody>
+                          </table>
+                        
+                                        </div>
                 <h2>Datos del pago</h2>
                 <p class="lead">Por favor ingresa tus datos de pago para proceder con el envío de tus productos</p>
             </div>
@@ -52,73 +50,18 @@
         <form class="needs-validation" novalidate>
             <div class="row g-3">
                 <div class="col-sm-6">
-                    <label for="firstName" class="form-label">Nombre(s)</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        El campo de nombre es requerido
-                    </div>
-                </div>
+                    
 
-                <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                    <div class="invalid-feedback">
-                        El campo de apellidos es requerido
-                    </div>
-                </div>
 
                 <div class="col-12">
-                    <label for="username" class="form-label">Correo eléctronico</label>
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">@</span>
-                        <input type="text" class="form-control" id="username" placeholder="ejemplo@dominio.com" required>
-                        <div class="invalid-feedback">
-                            El correo es requerido
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <label for="email" class="form-label">Correo secundario <span class="text-muted">(Opcional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                        ingrese un correo valido por favor.
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <label for="address" class="form-label">Dirección</label>
+                    <label for="address" class="form-label">Dirección de envío</label>
                     <input type="text" class="form-control" id="address" placeholder="Calle, número, código postal, colonia y delegación" required>
                     <div class="invalid-feedback">
                         Por favor ingrese una dirección de envio
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <label for="address2" class="form-label">Dirección 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Calle, número, código postal, colonia y delegación">
-                </div>
-
-                <div class="col-md-5">
-                    <label for="country" class="form-label">Ciudad</label>
-                    <select class="form-select" id="country" required>
-                <option value="">Seleccione...</option>
-                <option>Ciudad de México</option>
-              </select>
-                    <div class="invalid-feedback">
-                        Seleccione una ciudad dentro de las opciones.
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-                    <label for="zip" class="form-label">Código Postal</label>
-                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Código postal requerido
-                    </div>
-                </div>
-            </div>
-
+                
             <hr class="my-4">
 
             <div class="form-check">

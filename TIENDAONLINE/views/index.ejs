@@ -3,14 +3,33 @@
 
     <div class="container-fluid" >
         <main>
+            <% 
             
+                let j = 0;
+                //console.log("productos en el front " + JSON.stringify(articles));
+                //console.log(articles.results);
+                for (let i = 0; i < respProd.results.length; i++) {
+            %>
                 <form>
+                    
                     <div class="container-fluid" id="articleDivTrend"></div>
                     <div class="container-fluid" id="articleDiv" >
+                        <div class="card">
+                        <div id="tarjetaArticulo" class = "card">
+                            <img src = <%= respProd.results[i].thumbnail%>/50px90/" alt = "Card image cap" > 
+                                <div class = "card-title form-control" > 
+                                    <h5 id = <%= respProd.results[i].id%> class = "card-title"> <%= respProd.results[i].title %></h5>
+                                    <h3 id=<%=j%>>$<%=respProd.results[i].price %></h3 > 
+                                    <a name= "<%=respProd.results[i].title%>" value = "<%=respProd.results[i].price%>" class = "btn btn-primary" id = "boton_carrito" onclick ="addCart(['<%= respProd.results[i].id %>','<%= respProd.results[i].price %>','<%= respProd.results[i].title %>',1]);" ><i class="fas fa-cart-plus"></i> </a>
+                                </div>
+                        </div>
+                    </div>
 
                     </div>
             </div>
             </form>
+            <%     j += 1;
+        }%>
 
     </div>
     </div>
@@ -26,11 +45,11 @@
     </footer>
     </div>
 
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="/assets/dist/js/form-validation.js"></script>
-    <script src="/js/scripts.js"></script>
+    <script src="/js/scripts.js">getProducts();</script>
 </body>
 
 </html>

@@ -7,8 +7,8 @@ module.exports = (app) => {
     app.get('/inicio', async(req, res) => {
 
         let respProd = await apis.getProductsML("Inicio");
-        let disponibles = await db.addAvailables(respProd);
-        res.render('index',respProd);
+        //let disponibles = await db.addAvailables({respProd});
+        res.render('index',{respProd});
         //res.send(respProd);
 
     });

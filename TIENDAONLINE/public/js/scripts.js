@@ -1,36 +1,46 @@
 const getProducts = async() => {
 
     let respURL = await fetch(`http://localhost:3001/inicio`);
-    await respURL.json().then((s) => respURL = s);
+    //await respURL.json().then((s) => respURL = s);
 
    //console.log("Respuesta en el front " + respURL);
 
-    CreateArticle(respURL);
+    //CreateArticle(respURL);
 
 };
-
-const CreateArticle = async(articles) => {
-    let j = 0;
-    //console.log("productos en el front " + JSON.stringify(articles));
-    //console.log(articles.results);
-    for (let i = 0; i < articles.results.length; i++) {
-        const divProducts = document.createElement("div");
-        divProducts.setAttribute("id", "p" + i);
-        divProducts.setAttribute("class", "Card");
-        let producto = `
-            <div id="tarjetaArticulo" class = "card">
-                <img src = ${articles.results[i].thumbnail}/50px90/" alt = "Card image cap" > 
-                    <div class = "card-title form-control" " > 
-                        <h5 id = ${articles.results[i].id} class = "card-title"> ${articles.results[i].title}</h5>
-                        <h3 id=${j}>$${articles.results[i].price}</h3 > 
-                        <a name= "${articles.results[i].title}" value = "${articles.results[i].price}" class = "btn btn-primary" id = "boton_carrito" onclick ="addCart('${articles.results[i].id}');" ><i class="fas fa-cart-plus"></i> </a>
-                    </div>
-            </div>`;
-        divProducts.innerHTML += producto;
-        articleDiv.appendChild(divProducts);
-
-        j += 1;
+const createUser = async () =>{
+    let newUser={};
+    $('input').each(function() {
+        newUser[this.name] = this.value;
+    });
+    console.log(newUser);
+    try {
+        await fetch('http://localhost:3001/register', {
+            method: "POST",
+            body: JSON.stringify(newUser),
+            headers: {
+                "content-type": "application/json"
+            }
+        })
+        .then(function(res) { 
+            return (Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Usuario registrado con exito',
+                showConfirmButton: false,
+                timer: 2500
+              }),res.json()); 
+        });
+    } catch (err) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No es posible agregar al usuario!',
+            
+          })
     }
+
+    
 };
 
 const searchArticle = () => {
@@ -57,16 +67,19 @@ const searchProducts = async(prod) => {
 
 };
 
-const addCart = async(id) => {
-    console.log(`Se va a enviar al carrito el artículo ${id}`);
-   /* let newPost = {
-        id: id,
-        nombre: nombre,
-        cantidad: cantidad,
-        precio: precio,
+const addCart = async(article) => {
+    //console.log(`Se va a enviar al carrito el artículo ${JSON.stringify(id), JSON.stringify(precio), JSON.stringify(nombre)}`);
+    console.log(`Se va a enviar al carrito el artículo ${article}`);
+    
+    let newPost = {
+        id: article[0],
+        nombre: article[2],
+        cantidad: article[3],
+        precio: article[1],
         clave: 'clave',
-    };*/
-   /* await fetch('http://localhost:3001/cart', {
+    };
+   try{
+    await fetch('http://localhost:3001/cart', {
             method: "POST",
             body: JSON.stringify(newPost),
             headers: {
@@ -75,23 +88,23 @@ const addCart = async(id) => {
         })
         .then(function(res) { return res.json(); })
         .then(function(idProd) {
-            alert(JSON.stringify(idProd));
-        });*/
-
-        let newPost = {
-            id: id
-        };
-        await fetch('http://localhost:3001/validateProd', {
-            method: "POST",
-            body: JSON.stringify(newPost),
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-        .then(function(res) { return res.json(); })
-        .then(function(idProd) {
-            alert(JSON.stringify(idProd));
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Producto agregado !!',
+                showConfirmButton: false,
+                timer: 3500
+              });
         });
+    }catch(err){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No es posibe agregar este producto !',
+          })
+    }
+
+
 
 };
 

@@ -1,5 +1,7 @@
-const midd = require('../../middlewares/user')
-const userService = require('../../services/user')
+const midd = require('../../middlewares/user');
+const userService = require('../../services/user');
+const Swal = require('sweetalert2');
+const usersDB = require('../../app/model/userModel');
 
 module.exports = (app) => {
     app.get('/login', async (req, res) => {
@@ -33,14 +35,51 @@ module.exports = (app) => {
         }
     })
 
-    app.post('/newuser', async (req, res) => {
+    app.post('/register', async (req, res) => {
+        console.log(`INTENTO DE REGISTRO USUARIO   ${JSON.stringify(req.body)}`)
         try {
             let user = req.body
             let result = await userService.userCreator(user)
-            res.json(result)
-
+            res.json(result);
         } catch (err) {
             res.status(400).send('An unexpected error occurred')
         }
     })
+    
+app.get('/userAdmin', async (req, res) => {
+    try {
+        let result = await usersDB.usersTable();
+        console.log("RESULTADO CONSULTA ", result);
+        res.render('adminUsers',{result});
+    } catch (err) {
+        res.status(400).send('An unexpected error occurred')
+    }
+    
+})
+
+app.post('/editUser', async (req, res) => {
+    console.log(`INTENTO DE actualización USUARIO   ${JSON.stringify(req.body)}`)
+    try {
+        let user = req.body
+        let result = await userService.userCreator(user)
+        res.json(result);
+    } catch (err) {
+        res.status(400).send('An unexpected error occurred')
+    }
+})
+
+
+app.post('/deleteUser', async (req, res) => {
+    console.log(`INTENTO DE borrar USUARIO   ${JSON.stringify(req.body)}`)
+    try {
+        let user = req.body
+        let result = await usersDB.usersDelete(user)
+        res.json(result);
+    } catch (err) {
+        res.status(400).send('An unexpected error occurred')
+    }
+})
+
+
 }
+

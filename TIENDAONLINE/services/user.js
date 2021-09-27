@@ -1,5 +1,6 @@
-const userDB = require('../app/model/userModel')
-const jwt = require('jsonwebtoken')
+const userDB = require('../app/model/userModel');
+const jwt = require('jsonwebtoken');
+const Swal = require('sweetalert2');
 
 module.exports.tokenGeneration = async (data) => {
     console.log("generación del token ", data);
@@ -35,13 +36,15 @@ module.exports.userCreator = async (user) => {
         address: user.address,
         phone: user.phone,
         password: user.password,
+        rol: user.rol,
     }
     try {
         console.log(newUser)
         let result = await userDB.newUser(newUser)
 
         if (result) {
-            return 'User creation successfully'
+            
+            return 'succes';
         } else {
 
             throw new Error('User already exists')

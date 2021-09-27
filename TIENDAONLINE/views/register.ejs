@@ -1,6 +1,8 @@
 <%- include("headers/registerHeader") %>
 
 <body class="bg-secondary  row justify-content-md-center ">
+    <div class="card  row justify-content-md-center " >
+        <div class="card-body  row justify-content-md-center ">
     <div class="container-fluid">
         <main>
             <div class="py-5 text-center">
@@ -12,83 +14,89 @@
     </div>
     <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Ingresa tus datos</h4>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" id="formNewUser" novalidate>
             <div class="row g-3">
                 <div class="col-sm-6">
                     <label for="firstName" class="form-label">Nombre(s)</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                    <input type="text" class="form-control" name="name" id="firstName" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         El campo de nombre es requerido
                     </div>
                 </div>
 
                 <div class="col-sm-6">
-                    <label for="lastName" class="form-label">Apellidos</label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                    <label for="lastName" class="form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control" name="lastname1" id="lastName" placeholder="" value="" required>
                     <div class="invalid-feedback">
-                        El campo de apellidos es requerido
+                        El campo de apellido paterno es requerido
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control" name="lastname2" id="lastName2" placeholder="" value="" required>
+                    <div class="invalid-feedback">
+                        El campo de apellido materno es requerido
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <label for="lastName" class="form-label">Telefono</label>
+                    <input type="text" class="form-control" name="phone" id="phone" placeholder="celular" value="" required>
+                    <div class="invalid-feedback">
+                        El campo de apellido materno es requerido
                     </div>
                 </div>
 
                 <div class="col-12">
-                    <label for="username" class="form-label">Correo eléctronico</label>
+                    <label for="username" name="email" class="form-label">Correo eléctronico</label>
                     <div class="input-group has-validation">
                         <span class="input-group-text">@</span>
-                        <input type="text" class="form-control" id="username" placeholder="ejemplo@dominio.com" required>
+                        <input type="text" name="email" class="form-control" id="email" placeholder="ejemplo@dominio.com" required>
+                        <div class="invalid-feedback">
+                            El correo es requerido
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <label for="username" name="password" class="form-label">Contraseña</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="MiContraseña2.0" required>
                         <div class="invalid-feedback">
                             El correo es requerido
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12">
-                    <label for="email" class="form-label">Correo secundario <span class="text-muted">(Opcional)</span></label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                    <div class="invalid-feedback">
-                        ingrese un correo valido por favor.
-                    </div>
-                </div>
 
                 <div class="col-12">
                     <label for="address" class="form-label">Dirección</label>
-                    <input type="text" class="form-control" id="address" placeholder="Calle, número, código postal, colonia y delegación" required>
+                    <input type="text" name="address" class="form-control" id="address" placeholder="Calle, número, código postal, colonia y delegación" required>
                     <div class="invalid-feedback">
                         Por favor ingrese una dirección de envio
                     </div>
                 </div>
-
                 <div class="col-12">
-                    <label for="address2" class="form-label">Dirección 2 <span class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="address2" placeholder="Calle, número, código postal, colonia y delegación">
-                </div>
-
-                <div class="col-md-5">
-                    <label for="country" class="form-label">Ciudad</label>
-                    <select class="form-select" id="country" required>
-                <option value="">Seleccione...</option>
-                <option>Ciudad de México</option>
-              </select>
-                    <div class="invalid-feedback">
-                        Seleccione una ciudad dentro de las opciones.
+                    <label for="rol" class="form-label">Elija un rol de usuario</label><BR>
+                    <label><input type="radio" id="rolAdmin" name="rol" value="god">
+                     Admin</label><br>
+                    <label><input type="radio" id="rolUser" name="rol" value="mortal">
+                     User</label><br>
+                  <div class="invalid-feedback">
+                        Por favor ingrese una opción 
                     </div>
                 </div>
-
-                <div class="col-md-3">
-                    <label for="zip" class="form-label">Código Postal</label>
-                    <input type="text" class="form-control" id="zip" placeholder="" required>
-                    <div class="invalid-feedback">
-                        Código postal requerido
-                    </div>
-                </div>
+                
             </div>
 
             <hr class="my-4">
 
 
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Registrar</button>
+            <a class="w-100 btn btn-primary btn-lg" type="submit" onclick="createUser();">Registrar</a>
         </form>
     </div>
     </div>
+</div>
+</div>
     </main>
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -102,11 +110,11 @@
     </div>
 
 
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="/assets/dist/js/form-validation.js"></script>
-    <script src="/scripts.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
 
 </html>

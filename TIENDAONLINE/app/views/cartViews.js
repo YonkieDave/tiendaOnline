@@ -9,8 +9,11 @@ module.exports = (app) =>{
 
     app.use(cors());
     //Endpoint para obtener el Carrito
-    app.get('/cart', cors(midd.corsOption), function(req, res) {
-        res.send(db.Cart);
+    app.get('/cart', function(req, res) {
+       // res.send(db.Cart);
+        let cart = db.Cart;
+        console.log(cart);
+        res.render('checkout', {cart})
     });
 
     app.get('/productsAvailables', cors(midd.corsOption), function(req, res) {

@@ -1,0 +1,57 @@
+<%- include("headers/registerHeader") %>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Usuario / Correo</th>
+        <th scope="col">Contraseña</th>
+        <th scope="col">Rol</th>
+        <th scope="col">Acciones</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        
+        <%  
+        //console.log("número de iteraciones", result[0].length)
+        for(let i = 0; i < result[0].length; i++) { 
+          //  console.log("entramos al for ", result[0][i].id_cliente);
+            
+
+            %>
+      <tr>
+        <td><%= result[0][i].id_cliente%></td>
+        <td><%= result[0][i].correo %></td>
+        <td><%= result[0][i].contraseña %></td>
+        <td><%= result[0][i].rol%></td>
+        <td>
+            <a href="/editUser" class="btn btn-outline-info">Editar</a>
+            <a href="/deleteUser" class="btn btn-outline-danger btn-borrar">Borrar</a>
+
+        </td>
+       
+      </tr>
+      <%  }  %>
+    </tbody>
+  </table>
+  
+  
+  
+  <footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021 TECLA CODING ACADEMY LEO & DAVE</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Privacy</a></li>
+        <li class="list-inline-item"><a href="#">Terms</a></li>
+        <li class="list-inline-item"><a href="#">Support</a></li>
+    </ul>
+</footer>
+</div>
+
+
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="/assets/dist/js/form-validation.js"></script>
+<script src="/js/scripts.js"></script>
+</body>
+
+</html>
