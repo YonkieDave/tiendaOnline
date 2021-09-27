@@ -108,4 +108,3 @@ const addCart = async(article) => {
 
 };
 
-getProducts();
